@@ -14,12 +14,11 @@
                     <TextBox x:Name="addressBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="429" Margin="184,22,0,0"/>
                     <Label Content="Port" HorizontalAlignment="Left" Margin="54,57,0,0" VerticalAlignment="Top" Width="108"/>
                     <Label Content="Path" HorizontalAlignment="Left" Margin="54,97,0,0" VerticalAlignment="Top" Width="65"/>
-                    <TextBox x:Name="pathBox" HorizontalAlignment="Left" Height="23" Margin="184,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="429"/>
-                    <TextBox x:Name="portBox" HorizontalAlignment="Left" Height="23" Margin="184,61,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="pathBox" HorizontalAlignment="Left" Height="23" Margin="184,101,0,0" Text="D:\DA Mang\transfer files\Client\" TextWrapping="Wrap" VerticalAlignment="Top" Width="429"/>
+                    <TextBox x:Name="portBox" HorizontalAlignment="Left" Height="23" Margin="184,61,0,0" Text="69" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                     <Button x:Name="getBtn" Content="Get" HorizontalAlignment="Left" Margin="184,180,0,0" VerticalAlignment="Top" Width="93" Click="getBtn_Click"/>
-                    <Button x:Name="putBtn" Content="Put" HorizontalAlignment="Left" Margin="308,180,0,0" VerticalAlignment="Top" Width="87"/>
-                    <TextBlock x:Name="clientLog" HorizontalAlignment="Left" Margin="184,272,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="429" Height="88"/>
-                    <ProgressBar x:Name="processBar" HorizontalAlignment="Left" Height="22" Margin="184,222,0,0" VerticalAlignment="Top" Width="429"/>
+                    <Button x:Name="putBtn" Content="Put" HorizontalAlignment="Left" Margin="308,180,0,0" VerticalAlignment="Top" Width="87" Click="putBtn_Click"/>
+                    <TextBlock x:Name="clientLog" HorizontalAlignment="Left" Margin="184,223,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="429" Height="137"/>
                     <Label Content="File Name" HorizontalAlignment="Left" Margin="54,140,0,0" VerticalAlignment="Top" Width="78"/>
                     <TextBox x:Name="filenameBox" HorizontalAlignment="Left" Height="23" Margin="184,140,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="429"/>
                 </Grid>

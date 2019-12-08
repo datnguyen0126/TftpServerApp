@@ -75,21 +75,40 @@ namespace TftpServerApp
 
         private void getBtn_Click(object sender, RoutedEventArgs e)
         {
+            clientLog.Text = "Getting file from server....";
             string fileName = filenameBox.Text;
             string path = pathBox.Text;
 
             TftpClient tftpClient = new TftpClient(addressBox.Text, Int32.Parse(portBox.Text));
-            tftpClient.Get(fileName, path + fileName);
+            try
+            {
+                tftpClient.Get(fileName, path + fileName);
+                clientLog.Text = "Done";
+            }
+            catch(Exception ex)
+            {
+                clientLog.Text = ex.Message;
+            }
         }
 
         private void putBtn_Click(object sender, RoutedEventArgs e)
         {
+            clientLog.Text = "Putting file to server....";
             string fileName = filenameBox.Text;
             string path = pathBox.Text;
+            clientLog.Text = path + fileName;
 
             TftpClient tftpClient = new TftpClient(addressBox.Text, Int32.Parse(portBox.Text));
-            tftpClient.Put(fileName, path + fileName);
+            try
+            {
+                tftpClient.Put(fileName, path + fileName);
+                clientLog.Text = "Done";
+            }
+            catch (Exception ex)
+            {
+                clientLog.Text = ex.Message;
+            }
+        }       
 
-        }
     }
 }

@@ -108,7 +108,7 @@ namespace TftpServerApp.Code
 
             BinaryReader fileStream = new BinaryReader(new FileStream(localFile, FileMode.Open, FileAccess.Read, FileShare.ReadWrite));
             IPEndPoint serverEP = new IPEndPoint(IPAddress.Parse(tftpServer), tftpPort);
-            UdpClient tftpSocket = new UdpClient(); IPHostEntry hostEntry = Dns.GetHostEntry(tftpServer);
+            UdpClient tftpSocket = new UdpClient();
 
             tftpSocket.Send(sendBuffer, sendBuffer.Length, serverEP);
             tftpSocket.Client.ReceiveTimeout = 1000;

@@ -40,7 +40,6 @@ namespace TftpServerApp.Code
             tftpServer = new UdpClient(69);
             byte[] sendBuffer;
             byte[] recBuffer;
-            IPEndPoint iep = new IPEndPoint(IPAddress.Any, 0);
             while (true)
             {
                 if (worker1.CancellationPending)
@@ -49,6 +48,7 @@ namespace TftpServerApp.Code
                     break;
                 }
                 int packetNr = 0;
+                IPEndPoint iep = new IPEndPoint(IPAddress.Any, 0);
                 recBuffer = tftpServer.Receive(ref iep);
                 if (((Opcode)recBuffer[1]) == Opcode.READ_REQUEST)
                 {
@@ -78,12 +78,12 @@ namespace TftpServerApp.Code
                     packetNr = 0;
                     string fileName = MyEnum.GetFileName(recBuffer);
 
-                    BinaryWriter fileStream = new BinaryWriter(new FileStream(path + fileName, FileMode.Create, FileAccess.Write, FileShare.Read));
                     sendBuffer = MyEnum.CreateAckPacket(packetNr++);
                     tftpServer.Send(sendBuffer, sendBuffer.Length, iep);
+                    BinaryWriter fileStream = new BinaryWriter(new FileStream(path + fileName, FileMode.Create, FileAccess.Write, FileShare.Read));
+                    recBuffer = tftpServer.Receive(ref iep);
                     while (true)
                     {
-                        recBuffer = tftpServer.Receive(ref iep);
                         if ((((recBuffer[2] << 8) & 0xff00) | recBuffer[3]) == packetNr)
                         {
                             fileStream.Write(recBuffer, 4, recBuffer.Length - 4);
@@ -91,6 +91,7 @@ namespace TftpServerApp.Code
                             sendBuffer = MyEnum.CreateAckPacket(packetNr++);
                             tftpServer.Send(sendBuffer, sendBuffer.Length, iep);
                         }
+                        recBuffer = tftpServer.Receive(ref iep);
                         if (recBuffer.Length < 516)
                         {
                             break;
